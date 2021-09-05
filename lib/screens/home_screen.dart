@@ -1,4 +1,5 @@
 import 'package:expenses_tracker/widgets/chart.dart';
+import 'package:expenses_tracker/widgets/expenses_list.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../widgets/form.dart';
@@ -14,17 +15,22 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
         body: [
           [
-            'Hello Robin!!'
+            'Hello Friend 😉!'
                 .text
                 .size(20)
                 .bold
                 .make()
-                .pOnly(top: 40, left: 25, bottom: 10),
+                .pOnly(top: 40, left: 25, bottom: 3),
+            'Here\'s your expenses of past seven days..'
+                .text
+                .size(15)
+                .make()
+                .pOnly(left: 25, bottom: 10),
             Chart()
                 .p24()
                 .box
-                .roundedLg
-                .border(width: 2, color: Colors.yellow)
+                .color(Colors.grey.shade300)
+                .roundedSM
                 .make()
                 .p12()
                 .wFull(context)
@@ -32,18 +38,14 @@ class _HomeScreenState extends State<HomeScreen> {
           ]
               .vStack(crossAlignment: CrossAxisAlignment.start)
               .box
-              .customRounded(BorderRadius.only(
-                bottomLeft: Radius.circular(25),
-                bottomRight: Radius.circular(25),
-              ))
-              .linearGradient([Vx.blue700, Vx.blue400],
-                  begin: Alignment.topCenter, end: Alignment.bottomCenter)
               .make()
               .p0()
-              .h48(context)
+              .h(MediaQuery.of(context).size.height * 0.45)
               .wFull(context),
+          ExpensesList().scrollVertical(),
         ].vStack().box.make().hFull(context).wFull(context),
         floatingActionButton: FloatingActionButton(
+          elevation: 5,
           onPressed: () {
             showModalBottomSheet(
               barrierColor: Colors.blue.withOpacity(0.8),

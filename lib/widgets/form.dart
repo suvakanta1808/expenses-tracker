@@ -14,6 +14,8 @@ class _CollecingFormState extends State<CollecingForm> {
 
   final _amountController = TextEditingController();
 
+  final _descController = TextEditingController();
+
   DateTime _selectedDate = DateTime(0, 0, 0, 0);
 
   void _dataSubmit(BuildContext ctx) {
@@ -29,7 +31,7 @@ class _CollecingFormState extends State<CollecingForm> {
 
     var exp = new Expense(
       title: enteredTitle,
-      description: 'desc',
+      description: _descController.text,
       date: _selectedDate,
       amount: enteredAmount,
     );
@@ -65,6 +67,13 @@ class _CollecingFormState extends State<CollecingForm> {
         // onChanged: (val) => titleInput = val,
       ),
       TextField(
+        decoration: InputDecoration(
+            labelText: 'Write something on which you spent(just one line)'),
+        controller: _titleController,
+        onSubmitted: (_) => _dataSubmit(context),
+        // onChanged: (val) => titleInput = val,
+      ),
+      TextField(
         decoration: InputDecoration(labelText: 'Amount'),
         controller: _amountController,
         keyboardType: TextInputType.number,
@@ -76,9 +85,11 @@ class _CollecingFormState extends State<CollecingForm> {
         child: Row(
           children: <Widget>[
             Expanded(
-              child: Text(_selectedDate == null
+              child: Text(_selectedDate == DateTime(0, 0, 0, 0)
                   ? 'No Date Chosen!'
-                  : 'Picked Date : $_selectedDate'),
+                  : 'Picked Date : ${_selectedDate.day}-' +
+                      '${_selectedDate.month}-' +
+                      '${_selectedDate.year}'),
             ),
             FlatButton(
               textColor: Theme.of(context).primaryColor,

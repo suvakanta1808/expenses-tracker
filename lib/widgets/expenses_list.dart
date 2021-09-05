@@ -19,6 +19,6 @@ class ExpensesList extends StatelessWidget {
               amount: list[i].amount,
             ),
             itemCount: list.length,
-          ).box.make().h(MediaQuery.of(context).size.height * 0.52);
+          ).box.make().h(MediaQuery.of(context).size.height * 0.55);
   }
 }
