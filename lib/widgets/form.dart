@@ -1,3 +1,4 @@
+import 'package:expenses_tracker/helpers/db_helper.dart';
 import 'package:expenses_tracker/models/expense.dart';
 import 'package:expenses_tracker/providers/expenses.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class _CollecingFormState extends State<CollecingForm> {
 
   DateTime _selectedDate = DateTime(0, 0, 0, 0);
 
-  void _dataSubmit(BuildContext ctx) {
+  Future<void> _dataSubmit(BuildContext ctx) async {
     if (_amountController.text == null) {
       return;
     }
@@ -36,8 +37,9 @@ class _CollecingFormState extends State<CollecingForm> {
       amount: enteredAmount,
     );
 
-    Provider.of<Expenses>(ctx, listen: false).addToExpensesList(exp);
-
+    //  Provider.of<Expenses>(ctx, listen: false).addToExpensesList(exp);
+    await Provider.of<DBHelper>(ctx, listen: false)
+        .insertIntoExpensesTable(exp);
     Navigator.of(context).pop();
   }
 
@@ -69,7 +71,7 @@ class _CollecingFormState extends State<CollecingForm> {
       TextField(
         decoration: InputDecoration(
             labelText: 'Write something on which you spent(just one line)'),
-        controller: _titleController,
+        controller: _descController,
         onSubmitted: (_) => _dataSubmit(context),
         // onChanged: (val) => titleInput = val,
       ),

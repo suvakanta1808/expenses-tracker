@@ -1,21 +1,16 @@
+import 'package:expenses_tracker/helpers/db_helper.dart';
+import 'package:expenses_tracker/models/expense.dart';
 import 'package:expenses_tracker/providers/expenses.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class Chart extends StatefulWidget {
-  const Chart({Key? key}) : super(key: key);
-
-  @override
-  _ChartState createState() => _ChartState();
-}
-
-class _ChartState extends State<Chart> {
+class Chart extends StatelessWidget {
   List<String> days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
   List<List<double>> getDataOfPastSevenDays(BuildContext context) {
-    final expList = Provider.of<Expenses>(context).expenses;
+    final expList = Provider.of<DBHelper>(context).expenseList;
     final List<List<double>> barchartdata = [];
 
     final dataList = expList.where(
@@ -45,6 +40,8 @@ class _ChartState extends State<Chart> {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<DBHelper>(context, listen: false).getDataFromtable();
+
     return BarChart(
       BarChartData(
         gridData: FlGridData(show: false),

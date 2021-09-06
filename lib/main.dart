@@ -1,3 +1,4 @@
+import 'package:expenses_tracker/helpers/db_helper.dart';
 import 'package:expenses_tracker/providers/expenses.dart';
 import 'package:expenses_tracker/screens/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
-      value: Expenses(),
+      value: DBHelper(),
       child: MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
