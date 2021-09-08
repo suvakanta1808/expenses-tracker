@@ -33,12 +33,18 @@ class DBHelper {
     await getDataFromtable();
   }
 
+  Future<void> deleteEntryFromtable(String id) async {
+    final db = await dataBase;
+    await db.delete('Expenses', where: 'id = ?', whereArgs: [id]);
+  }
+
   Future<List<Expense>> getDataFromtable() async {
     final db = await DBHelper().dataBase;
     var list = await db.query('Expenses');
     List<Expense> dataList = [];
     list.forEach((exp) {
       dataList.add(Expense(
+          id: exp['id'].toString(),
           title: exp['title'].toString(),
           description: exp['desc'].toString(),
           date: DateTime.parse(exp['date'].toString()),

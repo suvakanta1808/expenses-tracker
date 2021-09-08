@@ -13,10 +13,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white.withOpacity(0.7),
+      //  backgroundColor: Colors.white.withOpacity(0.7),
       body: [
         [
-          'Hello Friend 😉!'
+          'Hello Friend !!'
               .text
               .size(20)
               .bold
@@ -44,8 +44,20 @@ class _HomeScreenState extends State<HomeScreen> {
             .h(MediaQuery.of(context).size.height * 0.45)
             .wFull(context),
         ExpensesList().scrollVertical()
-      ].vStack().box.make().hFull(context).wFull(context).scrollVertical(),
+      ]
+          .vStack()
+          .box
+          .linearGradient(
+            [Vx.blue600, Vx.blue300, Vx.blue200, Vx.blue100, Vx.white],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          )
+          .make()
+          .hFull(context)
+          .wFull(context)
+          .scrollVertical(),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.amber,
         elevation: 5,
         onPressed: () {
           showModalBottomSheet(
@@ -60,7 +72,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           );
         },
-        child: Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+          size: 30,
+        ),
       ),
     );
   }

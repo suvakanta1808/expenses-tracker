@@ -1,6 +1,7 @@
 import 'package:expenses_tracker/models/expense.dart';
 import 'package:expenses_tracker/providers/expenses.dart';
 import 'package:expenses_tracker/widgets/expense_list_item.dart';
+import 'package:expenses_tracker/widgets/no_data_widget.dart';
 import '../helpers/db_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,12 +20,14 @@ class ExpensesList extends StatelessWidget {
           }
           final expenseList = dataSnapshot.data as List<Expense>;
           return expenseList.length == 0
-              ? 'No records found.Start adding some..'.text.makeCentered()
+              ? NoDataWidget()
               : ListView.builder(
                   itemBuilder: (ctx, i) => ExpenseListItem(
+                    id: expenseList[i].id,
                     title: expenseList[i].title,
                     description: expenseList[i].description,
                     amount: expenseList[i].amount,
+                    date: expenseList[i].date,
                   ),
                   itemCount: expenseList.length,
                 ).box.make().h(MediaQuery.of(context).size.height * 0.55);

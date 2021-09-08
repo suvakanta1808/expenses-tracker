@@ -31,6 +31,7 @@ class _CollecingFormState extends State<CollecingForm> {
     }
 
     var exp = new Expense(
+      id: DateTime.now().toString(),
       title: enteredTitle,
       description: _descController.text,
       date: _selectedDate,
@@ -102,7 +103,7 @@ class _CollecingFormState extends State<CollecingForm> {
                 .roundedSM
                 .make()
                 .pOnly(left: 10),
-            WidthBox(MediaQuery.of(context).size.width * 0.3),
+            WidthBox(MediaQuery.of(context).size.width * 0.2),
             FlatButton(
               textColor: Theme.of(context).primaryColor,
               onPressed: _presentDatePicker,
@@ -121,7 +122,8 @@ class _CollecingFormState extends State<CollecingForm> {
           .roundedLg
           .make()
           .w48(context)
-          .h(MediaQuery.of(context).size.height * 0.07),
+          .h(MediaQuery.of(context).size.height * 0.07)
+          .onTap(() => _dataSubmit(context)),
     ].vStack().p12().box.make().h56(context).wFull(context).scrollVertical();
   }
 }

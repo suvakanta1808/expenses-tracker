@@ -19,4 +19,9 @@ class Expenses with ChangeNotifier {
     await DBHelper().insertIntoExpensesTable(exp);
     notifyListeners();
   }
+
+  Future<void> deleteData(String id) async {
+    await DBHelper().deleteEntryFromtable(id);
+    notifyListeners();
+  }
 }
