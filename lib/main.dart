@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
-      value: DBHelper(),
+      value: Expenses(),
       child: MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,

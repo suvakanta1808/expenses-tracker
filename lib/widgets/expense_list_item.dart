@@ -64,7 +64,7 @@ class ExpenseListItem extends StatelessWidget {
               radius: MediaQuery.of(context).size.width * 0.13,
               backgroundColor: getColor(rnd.nextInt(5)))
           .p12(),
-      [title.text.size(15).make().p4(), description.text.size(11).make().p4()]
+      [title.text.size(17).make().p4(), description.text.size(11).make().p4()]
           .vStack(crossAlignment: CrossAxisAlignment.start)
           .box
           .make()

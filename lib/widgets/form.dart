@@ -38,8 +38,10 @@ class _CollecingFormState extends State<CollecingForm> {
     );
 
     //  Provider.of<Expenses>(ctx, listen: false).addToExpensesList(exp);
-    await Provider.of<DBHelper>(ctx, listen: false)
-        .insertIntoExpensesTable(exp);
+    // if (enteredAmount > Provider.of<Expenses>(ctx, listen: false).maxLimit) {
+    //   Provider.of<Expenses>(ctx, listen: false).updateLimit();
+    // }
+    await Provider.of<Expenses>(ctx, listen: false).addToExpensesList(exp);
     Navigator.of(context).pop();
   }
 
@@ -65,22 +67,16 @@ class _CollecingFormState extends State<CollecingForm> {
       TextField(
         decoration: InputDecoration(labelText: 'Title'),
         controller: _titleController,
-        onSubmitted: (_) => _dataSubmit(context),
-        // onChanged: (val) => titleInput = val,
       ),
       TextField(
         decoration: InputDecoration(
             labelText: 'Write something on which you spent(just one line)'),
         controller: _descController,
-        onSubmitted: (_) => _dataSubmit(context),
-        // onChanged: (val) => titleInput = val,
       ),
       TextField(
         decoration: InputDecoration(labelText: 'Amount'),
         controller: _amountController,
         keyboardType: TextInputType.number,
-        onSubmitted: (_) => _dataSubmit(context),
-        // onChanged: (val) => amountInput = val,
       ),
       Container(
         height: 80,
@@ -109,6 +105,6 @@ class _CollecingFormState extends State<CollecingForm> {
         onPressed: () => _dataSubmit(context),
         color: Theme.of(context).primaryColor,
       ),
-    ].vStack().p12().box.make().h60(context).wFull(context);
+    ].vStack().p12().box.make().h48(context).wFull(context).scrollVertical();
   }
 }

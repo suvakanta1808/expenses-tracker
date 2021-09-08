@@ -3,10 +3,10 @@ import 'package:expenses_tracker/models/expense.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 
-class DBHelper with ChangeNotifier {
-  List<Expense> expenseList = [];
+class DBHelper {
   static Database? _db;
 
   Future<Database> get dataBase async => _db ??= await initDb();
@@ -17,7 +17,7 @@ class DBHelper with ChangeNotifier {
     return openDatabase(path, version: 1, onOpen: (db) {},
         onCreate: (Database db, int version) async {
       await db.execute(
-          'CREATE TABLE Expenses(title TEXT(20),desc TEXT(20),amount DOUBLE,date TEXT PRIMARY KEY)');
+          'CREATE TABLE Expenses(title TEXT(20),desc TEXT(20),amount DOUBLE,date TEXT,id TEXT PRIMARY KEY)');
     });
   }
 
@@ -28,11 +28,12 @@ class DBHelper with ChangeNotifier {
       'desc': exp.description,
       'amount': exp.amount,
       'date': exp.date.toString(),
+      'id': DateTime.now().toString(),
     });
-    notifyListeners();
+    await getDataFromtable();
   }
 
-  getDataFromtable() async {
+  Future<List<Expense>> getDataFromtable() async {
     final db = await DBHelper().dataBase;
     var list = await db.query('Expenses');
     List<Expense> dataList = [];
@@ -43,7 +44,6 @@ class DBHelper with ChangeNotifier {
           date: DateTime.parse(exp['date'].toString()),
           amount: double.parse(exp['amount'].toString())));
     });
-    expenseList = dataList;
-    notifyListeners();
+    return dataList;
   }
 }
