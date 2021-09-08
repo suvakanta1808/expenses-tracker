@@ -64,31 +64,45 @@ class _CollecingFormState extends State<CollecingForm> {
   @override
   Widget build(BuildContext context) {
     return [
+      VxBox()
+          .gray400
+          .roundedLg
+          .make()
+          .h1(context)
+          .w15(context)
+          .pOnly(bottom: 8),
       TextField(
-        decoration: InputDecoration(labelText: 'Title'),
+        decoration:
+            InputDecoration(labelText: 'Title', border: InputBorder.none),
         controller: _titleController,
-      ),
+      ).pOnly(left: 25).box.gray200.roundedSM.make().p8(),
       TextField(
         decoration: InputDecoration(
-            labelText: 'Write something on which you spent(just one line)'),
+            labelText: 'Write something on which you spent(just one line)',
+            border: InputBorder.none),
         controller: _descController,
-      ),
+      ).pOnly(left: 25).box.gray200.roundedSM.make().p8(),
       TextField(
-        decoration: InputDecoration(labelText: 'Amount'),
+        decoration:
+            InputDecoration(labelText: 'Amount', border: InputBorder.none),
         controller: _amountController,
         keyboardType: TextInputType.number,
-      ),
+      ).pOnly(left: 25).box.gray200.roundedSM.make().p8(),
       Container(
-        height: 80,
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: Text(_selectedDate == DateTime(0, 0, 0, 0)
-                  ? 'No Date Chosen!'
-                  : 'Picked Date : ${_selectedDate.day}-' +
-                      '${_selectedDate.month}-' +
-                      '${_selectedDate.year}'),
-            ),
+          height: 80,
+          child: [
+            Text(_selectedDate == DateTime(0, 0, 0, 0)
+                    ? 'No Date Chosen!'
+                    : 'Picked Date : ${_selectedDate.day}-' +
+                        '${_selectedDate.month}-' +
+                        '${_selectedDate.year}')
+                .p12()
+                .box
+                .gray200
+                .roundedSM
+                .make()
+                .pOnly(left: 10),
+            WidthBox(MediaQuery.of(context).size.width * 0.3),
             FlatButton(
               textColor: Theme.of(context).primaryColor,
               onPressed: _presentDatePicker,
@@ -97,14 +111,17 @@ class _CollecingFormState extends State<CollecingForm> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-          ],
-        ),
-      ),
-      RaisedButton(
-        child: Text('Add Transaction'),
-        onPressed: () => _dataSubmit(context),
-        color: Theme.of(context).primaryColor,
-      ),
-    ].vStack().p12().box.make().h48(context).wFull(context).scrollVertical();
+          ].hStack(alignment: MainAxisAlignment.spaceBetween)),
+      'Add Transaction'
+          .text
+          .makeCentered()
+          .p12()
+          .box
+          .linearGradient([Vx.teal300, Vx.blue300])
+          .roundedLg
+          .make()
+          .w48(context)
+          .h(MediaQuery.of(context).size.height * 0.07),
+    ].vStack().p12().box.make().h56(context).wFull(context).scrollVertical();
   }
 }
