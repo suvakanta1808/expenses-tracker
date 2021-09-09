@@ -35,13 +35,13 @@ class _HomeScreenState extends State<HomeScreen> {
               .make()
               .pOnly(top: 8, left: 15, right: 15)
               .wFull(context)
-              .h32(context),
+              .h(MediaQuery.of(context).size.height * 0.32),
         ]
             .vStack(crossAlignment: CrossAxisAlignment.start)
             .box
             .make()
             .p0()
-            .h(MediaQuery.of(context).size.height * 0.45)
+            .h(MediaQuery.of(context).size.height * 0.48)
             .wFull(context),
         ExpensesList().scrollVertical()
       ]

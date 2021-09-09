@@ -118,12 +118,12 @@ class _CollecingFormState extends State<CollecingForm> {
           .makeCentered()
           .p12()
           .box
-          .linearGradient([Vx.teal300, Vx.blue300])
+          .linearGradient([Vx.teal300, Vx.blue600])
           .roundedLg
           .make()
           .w48(context)
           .h(MediaQuery.of(context).size.height * 0.07)
           .onTap(() => _dataSubmit(context)),
-    ].vStack().p12().box.make().h56(context).wFull(context).scrollVertical();
+    ].vStack().p12().box.make().h60(context).wFull(context).scrollVertical();
   }
 }

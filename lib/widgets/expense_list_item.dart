@@ -119,15 +119,15 @@ class ExpenseListItem extends StatelessWidget {
                   .size(18)
                   .make()
                   .pOnly(
-                      right: MediaQuery.of(context).size.width * 0.08, top: 20),
+                      right: MediaQuery.of(context).size.width * 0.06, top: 30),
               [
-                'Yes'
+                'Yes ✔'
                     .text
                     .makeCentered()
                     .py12()
-                    .px24()
+                    .px32()
                     .box
-                    .roundedSM
+                    .roundedLg
                     .blue400
                     .make()
                     .p16()
@@ -136,13 +136,13 @@ class ExpenseListItem extends StatelessWidget {
                       .deleteData(id);
                   Navigator.of(ctx).pop();
                 }),
-                'No'
+                'No ❌'
                     .text
                     .makeCentered()
                     .py12()
-                    .px24()
+                    .px32()
                     .box
-                    .roundedSM
+                    .roundedLg
                     .blue400
                     .make()
                     .p16()

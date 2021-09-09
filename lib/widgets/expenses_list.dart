@@ -30,7 +30,7 @@ class ExpensesList extends StatelessWidget {
                     date: expenseList[i].date,
                   ),
                   itemCount: expenseList.length,
-                ).box.make().h(MediaQuery.of(context).size.height * 0.55);
+                ).box.make().h(MediaQuery.of(context).size.height * 0.52);
         });
   }
 }
