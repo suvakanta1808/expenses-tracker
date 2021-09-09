@@ -1,4 +1,3 @@
-import 'package:expenses_tracker/helpers/db_helper.dart';
 import 'package:expenses_tracker/models/expense.dart';
 import 'package:expenses_tracker/providers/expenses.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -16,7 +15,6 @@ class _ChartState extends State<Chart> {
 
   List<List<double>> getDataOfPastSevenDays(
       BuildContext context, List<Expense> expList) {
-    //  final expList = Provider.of<DBHelper>(context, listen: false).expenseList;
     final List<List<double>> barchartdata = [];
 
     final dataList = expList.where(
@@ -69,7 +67,6 @@ class _ChartState extends State<Chart> {
             BarChartData(
               gridData: FlGridData(show: false),
               maxY: calculateMaxLimit(dataList),
-              //Provider.of<Expenses>(context).maxLimit,
               borderData: FlBorderData(show: false),
               barGroups: getDataOfPastSevenDays(context, dataList)
                   .map(
@@ -82,7 +79,6 @@ class _ChartState extends State<Chart> {
                             show: true,
                             colors: [Colors.white],
                             y: calculateMaxLimit(dataList),
-                            //Provider.of<Expenses>(context).maxLimit,
                           ),
                           width: 15,
                           borderRadius: BorderRadius.circular(15),

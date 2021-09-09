@@ -1,4 +1,3 @@
-import 'package:expenses_tracker/helpers/db_helper.dart';
 import 'package:expenses_tracker/models/expense.dart';
 import 'package:expenses_tracker/providers/expenses.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +19,7 @@ class _CollecingFormState extends State<CollecingForm> {
   DateTime _selectedDate = DateTime(0, 0, 0, 0);
 
   Future<void> _dataSubmit(BuildContext ctx) async {
-    if (_amountController.text == null) {
+    if (_amountController.text.isEmpty) {
       return;
     }
     final enteredTitle = _titleController.text;
@@ -38,10 +37,6 @@ class _CollecingFormState extends State<CollecingForm> {
       amount: enteredAmount,
     );
 
-    //  Provider.of<Expenses>(ctx, listen: false).addToExpensesList(exp);
-    // if (enteredAmount > Provider.of<Expenses>(ctx, listen: false).maxLimit) {
-    //   Provider.of<Expenses>(ctx, listen: false).updateLimit();
-    // }
     await Provider.of<Expenses>(ctx, listen: false).addToExpensesList(exp);
     Navigator.of(context).pop();
   }

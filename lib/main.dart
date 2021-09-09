@@ -1,4 +1,3 @@
-import 'package:expenses_tracker/helpers/db_helper.dart';
 import 'package:expenses_tracker/providers/expenses.dart';
 import 'package:expenses_tracker/screens/home_screen.dart';
 import 'package:flutter/material.dart';
